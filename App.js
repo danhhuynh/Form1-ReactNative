@@ -13,6 +13,7 @@ class App extends Component {
       customerView: {},
       showView: false,
     };
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClicked = this.handleButtonClicked.bind(this);
   }
@@ -52,11 +53,22 @@ class App extends Component {
 
   handleButtonClicked(event) {
     this.setState({ showView: true, customerView: { ...this.state.customer } });
+    this.scrollView.scrollToEnd({ animated: true });
   }
 
   render() {
     return (
-      <ScrollView style={[styles.container, { flexDirection: "column" }]}>
+      <ScrollView
+        // ref={this.scrollView}
+        // onContentSizeChange={this.scrollView.scrollToEnd({ animated: true })}
+        ref={(ref) => {
+          this.scrollView = ref;
+        }}
+        onContentSizeChange={() =>
+          this.scrollView.scrollToEnd({ animated: true })
+        }
+        style={[styles.container, { flexDirection: "column" }]}
+      >
         <CreateForm
           dataInput={this.state.customer}
           elementsInForm={FakeFormData.elementsInForm}
