@@ -59,8 +59,6 @@ class App extends Component {
   render() {
     return (
       <ScrollView
-        // ref={this.scrollView}
-        // onContentSizeChange={this.scrollView.scrollToEnd({ animated: true })}
         ref={(ref) => {
           this.scrollView = ref;
         }}
